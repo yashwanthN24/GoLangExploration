@@ -1,0 +1,10 @@
+.PHONY: build run
+
+build:
+	@go build -o bin/api ./cmd/api 
+	@go build -o bin/ws ./cmd/ws  
+	
+# figures or automatically for mian.go when we specify path i.e cmd/ws or cmd/api figure out thereis a main.go having main() function
+run : build  
+#  this will make sure that the build command is executed before the run command
+	@./bin/api
