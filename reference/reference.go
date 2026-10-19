@@ -24,3 +24,8 @@ func main() {
 
 	fmt.Printf("Slice header variable address: %p\n", &slice1)
 }
+
+
+// Sprintf (to print string and store the string inariable)
+
+// to read ?input from user use Scan() passing pointer to variable to store the input same c style input reading like scanf
