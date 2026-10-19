@@ -40,6 +40,16 @@ To run directly use
 
 main is the entry point of a go application same like c/c++/java
 
+go coroutines let use run code on separate lightweight threads, which allows for concurrent execution of code. This means that GoLang can handle a large number of concurrent requests without consuming too much memory or CPU resources.
+
+coroutines are lightweight threads and more cheaper to create than actual os threads.
+
+and communication between goroutines is done using channels, which allows for efficient communication between concurrent processes. This means that GoLang can handle multiple requests simultaneously without blocking or slowing down the application.
+
+Java now does this using virtual threads but go has been doing this for a long time and is more efficient than java virtual threads.
+
+![alt text](image-2.png)
+
 # Go Pointers and "Reference Types"
 
 **Yes, pointers work on "reference types" in Go, but you almost never need them.** 
