@@ -102,6 +102,15 @@ func initializeMap(m *map[string]int) {
 | **Channels**| **No** | Channels are handles to a shared queue pointer. |
 
 
+
+go build (build the binary executble or .exe based on your os (windows/linux/mac))
+
+go build -o <output_file_name> (builds the binary executable with the given name)
+
+go.mod is like the package.json file in nodejs or pom.xml in java. It contains the dependencies of your go project.
+
+go.sum is like the package-lock.json file in nodejs  It contains the dependencies of your go project.it locks all the versions of the packages being used in your project. It is automatically generated when you run `go mod tidy` or `go mod vendor`. It is used to ensure that the same versions of the packages are used across different environments and machines.
+
 Best docs for learning goLang are:
 
 https://go.dev/tour/basics/2
