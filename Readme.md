@@ -129,3 +129,20 @@ https://pkg.go.dev/std
 https://pkg.go.dev/strings@go1.27.2#ToUpper
 
 https://pkg.go.dev/os@go1.27.2
+
+
+## Web Frameworks in GoLang 
+
+
+Gin - Gin is a web framework written in Go (Golang). It is designed to be fast, efficient, and easy to use, making it a popular choice for building web applications and APIs. Gin provides a simple and intuitive API for routing, middleware, and request handling, and it is optimized for performance and scalability. It also includes features such as JSON validation, error handling, and rendering templates.
+
+https://gin-gonic.com/en/docs/
+
+Fiber - just like expressjs in nodejs. It is a fast, minimalist web framework for Go that is designed to be easy to use and efficient. It provides a simple and intuitive API for building web applications and APIs, and it is optimized for performance and scalability. Fiber is built on top of the Fasthttp package, which is a high-performance HTTP server library for Go.
+
+https://gofiber.io/
+
+
+echo = Echo is a high-performance, extensible, and minimalist web framework for Go (Golang). It is designed to be fast and efficient, making it a popular choice for building web applications and APIs. Echo provides a simple and intuitive API for routing, middleware, and request handling, and it is optimized for performance and scalability. It also includes features such as request validation, error handling, and rendering templates.
+
+https://echo.labstack.com/
