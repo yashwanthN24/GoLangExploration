@@ -50,6 +50,13 @@ Java now does this using virtual threads but go has been doing this for a long t
 
 ![alt text](image-2.png)
 
+
+go has no classes we create custom types and blueprints via structs and methods. we can create methods on structs and use them like classes in oop languages.
+
+interface define contract just like other laguages, we can implement interfaces on structs and use them like classes in oop languages.
+
+enums are implememted via const and iota in go. we can create enums using const and iota.
+
 # Go Pointers and "Reference Types"
 
 **Yes, pointers work on "reference types" in Go, but you almost never need them.** 
