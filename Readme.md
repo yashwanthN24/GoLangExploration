@@ -109,6 +109,67 @@ func initializeMap(m *map[string]int) {
 | **Channels**| **No** | Channels are handles to a shared queue pointer. |
 
 
+# Go Language "Char" Data Type Summary
+
+In **Go (Golang)**, there is no explicit `char` data type. Instead, Go handles characters using two distinct numeric types wrapped in single quotes (`'a'`):
+
+* **`rune`**: An alias for **`int32`**. It represents a Unicode code point. It uses **4 bytes** of memory and can store any character, including emojis, Chinese characters, and special symbols.
+* **`byte`**: An alias for **`uint8`**. It uses **1 byte** of memory and is used to store standard ASCII characters.
+
+---
+
+### Copyable Code Example
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	// 1. Using a 'rune' for Unicode/UTF-8 characters
+	var myRune rune = 'A'
+	speciaChar := '🚀' // Infers as rune automatically
+
+	// 2. Using a 'byte' for basic ASCII characters
+	var myByte byte = 'a'
+
+	// Printing values
+	fmt.Println("--- Character Values ---")
+	fmt.Printf("myRune (Character): %c\n", myRune)
+	fmt.Printf("myRune (Unicode Code Point): %d\n", myRune)
+	fmt.Printf("speciaChar (Character): %c\n", speciaChar)
+	fmt.Printf("myByte (Character): %c\n", myByte)
+
+	// Printing underlying types
+	fmt.Println("\n--- Underlying Types ---")
+	fmt.Println("myRune type:", reflect.TypeOf(myRune))       // int32
+	fmt.Println("speciaChar type:", reflect.TypeOf(speciaChar)) // int32
+	fmt.Println("myByte type:", reflect.TypeOf(myByte))       // uint8
+
+	// 3. Iterating over a string returns runes
+	fmt.Println("\n--- Iterating a String ---")
+	str := "Go🏃"
+	for index, char := range str {
+		fmt.Printf("Index: %d | Character: %c | Type: %s\n", index, char, reflect.TypeOf(char))
+	}
+}
+```
+
+---
+
+### Core Mechanics Comparison
+
+| Feature | `byte` | `rune` |
+| :--- | :--- | :--- |
+| **Underlying Type** | `uint8` (1 byte) | `int32` (4 bytes) |
+| **Primary Use Case** | Standard **ASCII** text data | Complete **Unicode / UTF-8** symbols |
+| **Syntax Declaration** | Single quotes (e.g., `'a'`) | Single quotes (e.g., `'🚀'`) |
+| **String Loops** | Standard `for i` loop accesses raw bytes | `for range` loop automatically decodes runes |
+
+
 
 go build (build the binary executble or .exe based on your os (windows/linux/mac))
 
