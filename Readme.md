@@ -214,3 +214,11 @@ https://gofiber.io/
 echo = Echo is a high-performance, extensible, and minimalist web framework for Go (Golang). It is designed to be fast and efficient, making it a popular choice for building web applications and APIs. Echo provides a simple and intuitive API for routing, middleware, and request handling, and it is optimized for performance and scalability. It also includes features such as request validation, error handling, and rendering templates.
 
 https://echo.labstack.com/
+
+
+## Go Beast for CLI development 
+
+
+https://pkg.go.dev/github.com/spf13/cobra
+
+https://pkg.go.dev/github.com/spf13/viper
