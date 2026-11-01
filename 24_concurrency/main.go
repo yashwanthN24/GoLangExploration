@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func worker(url string, wg *sync.WaitGroup, resultChan chan string) {
+func worker(url string, wg *sync.WaitGroup, resultChan chan Result) {
 	defer wg.Done()
 	// this is guranteed to run after this function completes irrespective of any error or normal execution defer enoreces it to run this after this fuction completes so think of it like last line to this function always runs before this function completes
 
@@ -16,12 +16,20 @@ func worker(url string, wg *sync.WaitGroup, resultChan chan string) {
 	// simulating image processing
 	fmt.Printf("image processed : %s\n", url)
 
-	resultChan <- url // sending the data to the channle for the mainroutine to recieve it and process it  (sending to channle )
+	resultChan <- Result{
+		Value: url,
+		Err:   nil,
+	} // sending the data to the channle for the mainroutine to recieve it and process it  (sending to channle )
+}
+
+type Result struct {
+	Value string
+	Err   error
 }
 
 func main() {
 	var wg sync.WaitGroup
-	resultchan := make(chan string, 6)
+	resultchan := make(chan Result, 6)
 
 	// fmt.Println("welcome to go concurrency")
 	startTime := time.Now()
@@ -48,7 +56,10 @@ func main() {
 
 	// aggragting results fan in
 	for result := range resultchan {
-		fmt.Printf("Recieved : %s\n", result)
+		fmt.Printf("Recieved : %v \n", result)
+		if result.Err != nil{
+			// reporcess 
+		}
 	}
 
 	fmt.Printf("it took %s ms. ", time.Since(startTime))
@@ -83,3 +94,7 @@ unbuffered channel boht sides sender and reciever must be ready (connection type
 with goruntines we can do cpu intensive tasks concurrently
 
 */
+
+// waitgroups , channels and goroutines are actually used in go lang backend for concurrency n golang
+
+// in go we dont thrwo errors rather we return errors from functions
