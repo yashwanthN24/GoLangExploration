@@ -22,7 +22,7 @@ func worker(jobsChan chan string, wg *sync.WaitGroup, resultChan chan Result) {
 		} // sending the data to the channle for the mainroutine to recieve it and process it  (sending to channle )
 	}
 
-	fmt.Printf("worker shutting down")
+	fmt.Printf("worker shutting down \n")
 
 }
 
