@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"os"
 )
 
@@ -81,21 +83,62 @@ func main() {
 	// }
 
 	//? creating a file
-	f, err := os.Create("example2.txt")
-	if err != nil {
-		panic(err)
-	}
+	// f, err := os.Create("example2.txt")
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	defer f.Close()
+	// defer f.Close()
 
 	// f.WriteString("Hi Go\n")
 	// f.WriteString("Nice language\n")
 
-	bytes := []byte("Hello GoLang")
+	// bytes := []byte("Hello GoLang")
 
-	f.Write(bytes) // overides the contents in file other way to write to files via bytes slice 
+	// f.Write(bytes) // overides the contents in file other way to write to files via bytes slice
 
 	// appends to existing content
 
 	// then how to overide to override use os.writeFile
+
+	//? Read and write to other file (streaming fashion For larghe file sproduction style)
+
+	sourceFile, err := os.Open("example.txt")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer sourceFile.Close()
+
+	destFile, err := os.Create("example2.txt")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer destFile.Close()
+
+	reader := bufio.NewReader(sourceFile) // this already ha a buffer of default size 4096
+	writer := bufio.NewWriter(destFile)
+
+	for {
+		b, err := reader.ReadByte()
+		if err != nil {
+			if err.Error() != "EOF" {
+				panic(err)
+			}
+			break
+		}
+
+		e := writer.WriteByte(b)
+		if e != nil {
+			panic(e)
+		}
+	}
+
+	writer.Flush()
+
+	fmt.Println(" written to new file successfully ")
+	
 }
