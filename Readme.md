@@ -216,6 +216,48 @@ echo = Echo is a high-performance, extensible, and minimalist web framework for 
 https://echo.labstack.com/
 
 
+## Go Commands 
+
+# Go (Golang) Backend Package Management Summary
+
+## 1. The `go get -u` Command
+* **`go get`**: Adds, updates, or removes dependencies in your project's `go.mod` file.
+* **`-u` (Update)**: Instructs Go to actively scan the network and update the named package and all of its dependencies to their latest compatible minor or patch releases. 
+* **Note**: Without `-u`, Go will only download the specific version needed or keep your existing `go.mod` versions locked as they are.
+
+---
+
+## 2. Core Backend Development Commands
+
+* **`go mod init <name>`**: Initializes a new backend project and creates the `go.mod` file to track libraries.
+* **`go run main.go`**: Compiles code into temporary memory and starts your backend locally for instant testing.
+* **`go mod tidy`**: Cleans your project by downloading missing imports and removing unused libraries.
+* **`go test ./...`**: Runs all unit and integration tests across your entire project directory structure.
+* **`go build -o <binary-name> main.go`**: Compiles your backend into a single, production-ready binary executable file (`-o` stands for output).
+
+---
+
+## 3. Global Tools vs. Project Dependencies
+
+Go handles system-wide tools differently than local project code libraries:
+
+### 🌍 Global Tools
+* **What they are**: Executable command-line programs installed once onto your entire machine. They live in your system's `~/go/bin` directory.
+* **Installation**: Always use `go install package@latest`
+* **Common Backend Examples**:
+  * **Air** (`://github.com`): Live-reload tool that auto-restarts your server on code changes.
+  * **Golangci-lint** (`://github.com`): Code linter.
+  * **Swag** (`://github.com`): Automatically generates Swagger/OpenAPI documentation.
+
+### 📦 Project Dependencies (Normal Packages)
+* **What they are**: Raw source code libraries downloaded strictly for the specific project you are building and tracked in your local `go.mod` file.
+* **Installation**: Always run `go get package` inside your project directory.
+* **Common Backend Examples**:
+  * **Web Frameworks**: `://github.com` or `://github.com`
+  * **Database ORMs/Drivers**: `gorm.io/gorm` or `://github.com` (PostgreSQL)
+  * **Utilities**: `://github.com` (Environment variables) or `://github.com` (Authentication)
+
+
 ## Go Beast for CLI development 
 
 

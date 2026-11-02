@@ -31,3 +31,5 @@ when done we close the channel to signal that no more data will be sent on the c
 then all workers will exit and main goroutine will exit as well.
 
 https://chatgpt.com/c/6ae7909e-1b94-83e8-9213-bd7f9054a152
+
+https://chatgpt.com/c/6ae81c1d-94e0-83ec-8ab1-ab811836e023
