@@ -24,7 +24,7 @@ func main(){
 	fmt.Printf("%T and %v \n" , complexData , complexData)
 
 	// reference types 
-	// slices []T , Maps map[k]v , Pointers *T , functions func(){} 
+	// slices []T , Maps map[k]v , Pointers *T , functions func(){} , channels
 
 	// for pritimitives default values are zero values i.e for int 0 , for string "" , for bool false
 
