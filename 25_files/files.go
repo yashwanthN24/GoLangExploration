@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -25,29 +26,44 @@ func main() {
 
 	//? Reading file
 
-	f, err := os.Open("example.txt")
+	// f, err := os.Open("example.txt")
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// defer f.Close()
+
+	// // now need to store the content of this file in a bufffer or in memory that i s available as long as this prgram (process exists /runs)
+
+	// // buf := make([]byte, 12)
+	// fileInfo, err := f.Stat()
+	// buf := make([]byte, fileInfo.Size())
+
+	// d, err := f.Read(buf) // d is the number of bytes read (bytes means characters as 1 character is 1 byte in memory )
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// println("data", d, buf)
+
+	// for i := 0; i < len(buf); i++ {
+	// 	println("data", d, string(buf[i]))
+	// }
+
+	//? Reading file easy way
+
+	data, err := os.ReadFile("example.txt")
 
 	if err != nil {
 		panic(err)
 	}
 
-	defer f.Close()
+	fmt.Println(string(data))
 
-	// now need to store the content of this file in a bufffer or in memory that i s available as long as this prgram (process exists /runs)
+	// Readfile is good for small files as it loads the entire file nto memory at once 
+	// so for large files very slow so we have to use treaming like nodejs instead of fs in nodejs 
 
-	// buf := make([]byte, 12)
-	fileInfo, err := f.Stat()
-	buf := make([]byte, fileInfo.Size())
-
-	d, err := f.Read(buf) // d is the number of bytes read (bytes means characters as 1 character is 1 byte in memory )
-
-	if err != nil {
-		panic(err)
-	}
-
-	println("data", d, buf)
-
-	for i := 0; i < len(buf); i++ {
-		println("data", d, string(buf[i]))
-	}
+	
 }
