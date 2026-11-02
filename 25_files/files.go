@@ -54,16 +54,30 @@ func main() {
 
 	//? Reading file easy way
 
-	data, err := os.ReadFile("example.txt")
+	// data, err := os.ReadFile("example.txt")
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// fmt.Println(string(data))
+
+	// Readfile is good for small files as it loads the entire file nto memory at once
+	// so for large files very slow so we have to use treaming like nodejs instead of fs in nodejs
+
+	//? reading folders
+
+	dir, err := os.Open("../")
 
 	if err != nil {
 		panic(err)
 	}
+	defer dir.Close()
 
-	fmt.Println(string(data))
+	fileInfo, err := dir.ReadDir(-1)// if number < 0 it reads all contents of he directory 
+	// if n > 0 it gets only those manay number sof directory or files as a slice 
 
-	// Readfile is good for small files as it loads the entire file nto memory at once 
-	// so for large files very slow so we have to use treaming like nodejs instead of fs in nodejs 
-
-	
+	for _, fi := range fileInfo {
+		fmt.Println(fi.Name(), fi.IsDir())
+	}
 }
