@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 )
@@ -103,42 +102,50 @@ func main() {
 
 	//? Read and write to other file (streaming fashion For larghe file sproduction style)
 
-	sourceFile, err := os.Open("example.txt")
+	// sourceFile, err := os.Open("example.txt")
 
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// defer sourceFile.Close()
+
+	// destFile, err := os.Create("example2.txt")
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// defer destFile.Close()
+
+	// reader := bufio.NewReader(sourceFile) // this already ha a buffer of default size 4096
+	// writer := bufio.NewWriter(destFile)
+
+	// for {
+	// 	b, err := reader.ReadByte()
+	// 	if err != nil {
+	// 		if err.Error() != "EOF" {
+	// 			panic(err)
+	// 		}
+	// 		break
+	// 	}
+
+	// 	e := writer.WriteByte(b)
+	// 	if e != nil {
+	// 		panic(e)
+	// 	}
+	// }
+
+	// writer.Flush()
+
+	// fmt.Println(" written to new file successfully ")
+
+	//? deleting a file
+
+	err := os.Remove("example2.txt")
 	if err != nil {
 		panic(err)
 	}
 
-	defer sourceFile.Close()
-
-	destFile, err := os.Create("example2.txt")
-
-	if err != nil {
-		panic(err)
-	}
-
-	defer destFile.Close()
-
-	reader := bufio.NewReader(sourceFile) // this already ha a buffer of default size 4096
-	writer := bufio.NewWriter(destFile)
-
-	for {
-		b, err := reader.ReadByte()
-		if err != nil {
-			if err.Error() != "EOF" {
-				panic(err)
-			}
-			break
-		}
-
-		e := writer.WriteByte(b)
-		if e != nil {
-			panic(e)
-		}
-	}
-
-	writer.Flush()
-
-	fmt.Println(" written to new file successfully ")
-	
+	fmt.Println("file deleted sucessfully")
 }
