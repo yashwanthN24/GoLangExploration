@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
@@ -67,17 +66,36 @@ func main() {
 
 	//? reading folders
 
-	dir, err := os.Open("../")
+	// dir, err := os.Open("../")
 
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer dir.Close()
+
+	// fileInfo, err := dir.ReadDir(-1)// if number < 0 it reads all contents of he directory
+	// if n > 0 it gets only those manay number sof directory or files as a slice
+
+	// for _, fi := range fileInfo {
+	// 	fmt.Println(fi.Name(), fi.IsDir())
+	// }
+
+	//? creating a file
+	f, err := os.Create("example2.txt")
 	if err != nil {
 		panic(err)
 	}
-	defer dir.Close()
 
-	fileInfo, err := dir.ReadDir(-1)// if number < 0 it reads all contents of he directory 
-	// if n > 0 it gets only those manay number sof directory or files as a slice 
+	defer f.Close()
 
-	for _, fi := range fileInfo {
-		fmt.Println(fi.Name(), fi.IsDir())
-	}
+	// f.WriteString("Hi Go\n")
+	// f.WriteString("Nice language\n")
+
+	bytes := []byte("Hello GoLang")
+
+	f.Write(bytes) // overides the contents in file other way to write to files via bytes slice 
+
+	// appends to existing content
+
+	// then how to overide to override use os.writeFile
 }
