@@ -33,3 +33,7 @@ then all workers will exit and main goroutine will exit as well.
 https://chatgpt.com/c/6ae7909e-1b94-83e8-9213-bd7f9054a152
 
 https://chatgpt.com/c/6ae81c1d-94e0-83ec-8ab1-ab811836e023
+
+worker pool pattern for concurrency in go 
+
+https://chatgpt.com/c/6ae8259a-31dc-83ec-b951-03285d00c4b0

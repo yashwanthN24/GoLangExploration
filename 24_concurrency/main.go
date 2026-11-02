@@ -6,20 +6,24 @@ import (
 	"time"
 )
 
-func worker(url string, wg *sync.WaitGroup, resultChan chan Result) {
+func worker(jobsChan chan string, wg *sync.WaitGroup, resultChan chan Result) {
 	defer wg.Done()
 	// this is guranteed to run after this function completes irrespective of any error or normal execution defer enoreces it to run this after this fuction completes so think of it like last line to this function always runs before this function completes
 
-	time.Sleep(time.Millisecond * 50)
-	// to add 50 milliseconds delay
+	// aggragting results fan in
+	for job := range jobsChan {
+		// to add 50 milliseconds delay
+		time.Sleep(time.Millisecond * 50)
+		// simulating image processing
+		// fmt.Printf("image processed : %s\n", job)
+		resultChan <- Result{
+			Value: job,
+			Err:   nil,
+		} // sending the data to the channle for the mainroutine to recieve it and process it  (sending to channle )
+	}
 
-	// simulating image processing
-	fmt.Printf("image processed : %s\n", url)
+	fmt.Printf("worker shutting down")
 
-	resultChan <- Result{
-		Value: url,
-		Err:   nil,
-	} // sending the data to the channle for the mainroutine to recieve it and process it  (sending to channle )
 }
 
 type Result struct {
@@ -53,46 +57,40 @@ func main() {
 		"image_20.png",
 	}
 
-
 	var wg sync.WaitGroup
-	// totalWorkers := 5
+	totalWorkers := 5
 
 	resultchan := make(chan Result, 50)
-
-	
+	jobsChan := make(chan string, len(jobs))
 
 	// fmt.Println("welcome to go concurrency")
 	startTime := time.Now()
 	// fmt.Print(startTime)
 
-	// for i:=1 ; i<=totalWorkers ; i++{
-		
-	// }
+	for i := 1; i <= totalWorkers; i++ {
+		wg.Add(1)
+		go worker(jobsChan, &wg, resultchan) // warming the workers to wait to process that tasks where they wait for jobs in jobschanel
 
-	for _ , job := range jobs{
-		wg.Add(1) 
-		go worker(job, &wg, resultchan)
-		
 	}
-	//works but for 1000 job we are creatuing 1000 goroutines which can degrade the ystem performance so we have to limit the nujmber of goroutines created 
 
-	// after ach goroutine completion it will decrement the counter pased to add of WaitGroup
+	//works but for 1000 job we are creatuing 1000 goroutines which can degrade the ystem performance so we have to limit the nujmber of goroutines created
 
-	// runs synchronously one after another
-	// so total 150ms
 
-	// go func ()  {
-	wg.Wait()
-	close(resultchan) //close the channel
+	go func() {
+		wg.Wait()
+		close(resultchan) //close the channel
 
-	// }()
+	}()
 
-	// aggragting results fan in
-	for result := range resultchan {
-		fmt.Printf("Recieved : %v \n", result)
-		if result.Err != nil{
-			// reporcess 
-		}
+	// send the jobs
+	for i := 0; i < len(jobs); i++ {
+		jobsChan <- jobs[i]
+	}
+
+	close(jobsChan)
+
+	for result := range resultchan{
+		fmt.Printf("` Job completed %v\n" , result)
 	}
 
 	fmt.Printf("it took %s ms. ", time.Since(startTime))
