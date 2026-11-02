@@ -28,20 +28,53 @@ type Result struct {
 }
 
 func main() {
+
+	jobs := []string{
+		"image_1.png",
+		"image_2.png",
+		"image_3.png",
+		"image_4.png",
+		"image_5.png",
+		"image_6.png",
+		"image_7.png",
+		"image_8.png",
+		"image_9.png",
+		"image_10.png",
+		"image_11.png",
+		"image_2.png",
+		"image_12.png",
+		"image_13.png",
+		"image_14.png",
+		"image_15.png",
+		"image_16.png",
+		"image_17.png",
+		"image_18.png",
+		"image_19.png",
+		"image_20.png",
+	}
+
+
 	var wg sync.WaitGroup
-	resultchan := make(chan Result, 6)
+	// totalWorkers := 5
+
+	resultchan := make(chan Result, 50)
+
+	
 
 	// fmt.Println("welcome to go concurrency")
 	startTime := time.Now()
 	// fmt.Print(startTime)
 
-	wg.Add(6) // 3 since we are running 3 go routines  pr 3 workers
-	go worker("image_1.png", &wg, resultchan)
-	go worker("image_2.png", &wg, resultchan)
-	go worker("image_3.png", &wg, resultchan)
-	go worker("image_4.png", &wg, resultchan)
-	go worker("image_5.png", &wg, resultchan)
-	go worker("image_6.png", &wg, resultchan)
+	// for i:=1 ; i<=totalWorkers ; i++{
+		
+	// }
+
+	for _ , job := range jobs{
+		wg.Add(1) 
+		go worker(job, &wg, resultchan)
+		
+	}
+	//works but for 1000 job we are creatuing 1000 goroutines which can degrade the ystem performance so we have to limit the nujmber of goroutines created 
 
 	// after ach goroutine completion it will decrement the counter pased to add of WaitGroup
 
