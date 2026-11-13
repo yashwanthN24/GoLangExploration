@@ -140,3 +140,10 @@ func getUniqueErrors(messages []string) []string {
 
 	return unique
 }
+
+// https://chatgpt.com/c/6af69e19-7fb0-83ee-bc45-f9df0b9ce110
+
+
+// go scheduler and garbage collector and stack and heap in golang
+// https://chatgpt.com/c/6af693bb-d908-83ee-9b78-1abf1340367a
+
