@@ -147,3 +147,6 @@ func getUniqueErrors(messages []string) []string {
 // go scheduler and garbage collector and stack and heap in golang
 // https://chatgpt.com/c/6af693bb-d908-83ee-9b78-1abf1340367a
 
+// Java vs go in concurency when jva has virtual threads now which are platorm threads not os thread sheduler by jvm effectively onto a os thread 
+
+// https://chatgpt.com/c/6af6a154-1c2c-83ec-821e-4107566c9f77
